@@ -1,12 +1,13 @@
 import React from "react";
-import Wheel from "../../components/spinning-wheel/wheel";
+
 import NavBar from "../../components/NavBar/NavBar";
+import WheelComponent from "../../components/spinning-wheel/wheel";
 
 const HomePage = () => {
 	return (
 		<div>
 			<NavBar />
-			<Wheel />
+			<WheelComponent />
 		</div>
 	);
 };

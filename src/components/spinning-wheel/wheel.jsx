@@ -3,7 +3,7 @@ import { Wheel } from "react-custom-roulette";
 import "./style.scss";
 const data = [{ option: "0" }, { option: "Abo ALi" }, { option: "Al Jawad" }];
 
-export default () => {
+const WheelComponent = () => {
 	const [mustSpin, setMustSpin] = useState(false);
 	const [prizeNumber, setPrizeNumber] = useState(0);
 
@@ -33,3 +33,5 @@ export default () => {
 		</>
 	);
 };
+
+export default WheelComponent;
