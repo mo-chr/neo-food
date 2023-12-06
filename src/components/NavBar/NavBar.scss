@@ -1,0 +1,58 @@
+.NavBar{
+    max-width: 100%;
+    padding: 5px;
+    height: fit-content;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    padding: 1rem 20px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    user-select: none;
+    gap:20px
+    
+}
+.title-nav{
+    color: #6853de;
+    font-weight: 600;
+    font-size: larger;
+
+}
+.nav-item{
+width: fit-content;
+}
+.Logo{
+    height: 5vh;
+}
+.login-btn{
+    width: 100px;
+    font-size: 14px;
+    padding: 10px 30px;
+    background-color: #6853de;
+    border-radius: 3px;
+    border: none;
+    color: white;
+    font-weight: 700;
+    transition: all 200ms ease-in-out;
+}
+.login-btn:hover{
+
+    background-color: #4f3fad;
+    border: white;
+}
+@media only screen and (max-width: 600px) {
+    .NavBar{
+        padding-left: 1rem;
+    padding-right: 1rem;
+    }
+  .title-nav{
+    font-size: 16px;
+    scale: 0.8;
+  }
+  .Logo {
+    height: 5vh;
+    transform: translateX(0rem);
+    
+}
+}

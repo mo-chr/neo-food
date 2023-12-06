@@ -1,0 +1,24 @@
+.spinButton{
+    background:#00b3ff; 
+    width: 200px;
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 200ms ease-in-out;
+    border: none;
+        filter: drop-shadow(0px 5px 4px #0000004f);
+}
+.spinButton:hover{
+    filter: drop-shadow(0px 5px 4px #4444dd);
+}
+.box{
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap:20px;
+}
