@@ -6,11 +6,15 @@ import data from "./restaurants";
 const WheelComponent = () => {
 	const [mustSpin, setMustSpin] = useState(false);
 	const [prizeNumber, setPrizeNumber] = useState(0);
+	const [winner, setWinner] = useState(0);
+	const [isWinnerShown, setWinnerShown] = useState(false);
 
 	const handleSpinClick = () => {
 		if (!mustSpin) {
+			setWinnerShown(false);
 			const newPrizeNumber = Math.floor(Math.random() * data.length);
 			setPrizeNumber(newPrizeNumber);
+			setWinner(newPrizeNumber);
 			setMustSpin(true);
 		}
 	};
@@ -18,6 +22,11 @@ const WheelComponent = () => {
 	return (
 		<>
 			<div className="box">
+				{isWinnerShown ? (
+					<div className="winner">{`The winner is ${data[winner].option} !!`}</div>
+				) : (
+					""
+				)}
 				<Wheel
 					mustStartSpinning={mustSpin}
 					prizeNumber={prizeNumber}
@@ -29,10 +38,11 @@ const WheelComponent = () => {
 					data={data}
 					onStopSpinning={() => {
 						setMustSpin(false);
+						setWinnerShown(true);
 					}}
 				/>
 				<button className="spinButton" onClick={handleSpinClick}>
-					SPIN
+					Shou Badna Nekoul
 				</button>
 			</div>
 		</>
