@@ -1,0 +1,25 @@
+const data = [
+	{ option: "Malek l tawouk" },
+	{ option: "Tsunami" },
+	{ option: "Divy’s" },
+	{ option: "Abdallah" },
+	{ option: "Abou l 3oud" },
+	{ option: "Laflouf" },
+	{ option: "Hayat Doner" },
+	{ option: "Roadster" },
+	{ option: "Zaatar W Zeit" },
+	{ option: "Crepaway" },
+	{ option: "Al Jawad" },
+	{ option: "Kababji" },
+	{ option: "Barbar" },
+	{ option: "Bar tartine" },
+	{ option: "Boneless 28" },
+	{ option: "Eddy’s" },
+	{ option: "Pizzanini" },
+	{ option: "Glow" },
+	{ option: "Green Junkies" },
+	{ option: "Husk" },
+	{ option: "Ginger and Co" },
+];
+
+export default data;
