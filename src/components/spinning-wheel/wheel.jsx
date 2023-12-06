@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import "./style.scss";
-const data = [{ option: "0" }, { option: "Abo ALi" }, { option: "Al Jawad" }];
+import data from "./restaurants";
 
 const WheelComponent = () => {
 	const [mustSpin, setMustSpin] = useState(false);
