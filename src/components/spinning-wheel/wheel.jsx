@@ -21,6 +21,11 @@ const WheelComponent = () => {
 				<Wheel
 					mustStartSpinning={mustSpin}
 					prizeNumber={prizeNumber}
+					backgroundColors={["#00b3ff", "#4444dd"]}
+					textColors={["#ffffff"]}
+					outerBorderColor={["#3e3e86"]}
+					innerBorderColor={["#3e3e86"]}
+					radiusLineColor={["#3e3e86"]}
 					data={data}
 					onStopSpinning={() => {
 						setMustSpin(false);
