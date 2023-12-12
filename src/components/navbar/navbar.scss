@@ -1,4 +1,4 @@
-.NavBar{
+.navbar{
     max-width: 100%;
     padding: 5px;
     height: fit-content;
@@ -10,8 +10,14 @@
     justify-content:space-between;
     align-items: center;
     user-select: none;
-    gap:20px
+    gap:20px;
+    z-index: 10;
     
+}
+.button-holder{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
 }
 .title-nav{
     color: #6853de;
@@ -25,16 +31,34 @@ width: fit-content;
 .Logo{
     height: 5vh;
 }
-.login-btn{
-    width: 100px;
+.btn{
+    min-width: 100px;
     font-size: 14px;
     padding: 10px 30px;
-    background-color: #6853de;
     border-radius: 3px;
     border: none;
     color: white;
     font-weight: 700;
     transition: all 200ms ease-in-out;
+}
+.login-btn{
+   background-color: #6853de;
+}
+.logout-btn{
+   background-color: #de5353;
+}
+.restaurant-btn{
+    background-color: #6853de;
+}
+.restaurant-btn:hover{
+
+    background-color: #4f3fad;
+    border: white;
+}
+.logout-btn:hover{
+
+    background-color: #b94242;
+    border: white;
 }
 .login-btn:hover{
 
@@ -42,7 +66,7 @@ width: fit-content;
     border: white;
 }
 @media only screen and (max-width: 600px) {
-    .NavBar{
+    .navbar{
         padding-left: 1rem;
     padding-right: 1rem;
     }
