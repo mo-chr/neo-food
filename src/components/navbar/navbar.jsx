@@ -3,7 +3,7 @@ import "./navbar.scss";
 import { auth, googleProvider } from "../../config/firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import NeoLogo from "../../assets/neo-logo-white.svg";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import AddRestaurantModal from "../modals/add-restaurant-modal";
 
 function NavBar() {

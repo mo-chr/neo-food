@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 const firebaseConfig = {
 	apiKey: "AIzaSyAPB9cK3KIJhC3xCd0KNINY8U9rFYhRvjE",
 	authDomain: "neo-food.firebaseapp.com",
