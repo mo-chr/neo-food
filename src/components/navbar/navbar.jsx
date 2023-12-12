@@ -20,7 +20,6 @@ function NavBar() {
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
-				const uid = user.uid;
 				setUserLogged(true);
 			} else {
 				setUserLogged(false);
