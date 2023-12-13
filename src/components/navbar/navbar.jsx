@@ -42,7 +42,20 @@ function NavBar({ isUserLogged, setUserLogged, userRole, setUserRole }) {
 			console.error(err);
 		}
 	};
+useEffect(() => {
+	const handleAuthStateChanged = (user) => {
+		if (user) {
+			getUserRole(user);
+			setUserLogged(true);
+		} else {
+			setUserLogged(false);
+		}
+	};
 
+	onAuthStateChanged(auth, handleAuthStateChanged);
+
+	// Include dependencies in the dependency array
+}, [getUserRole, setUserLogged]);
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
