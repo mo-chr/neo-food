@@ -5,21 +5,48 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import NeoLogo from "../../assets/neo-logo-white.svg";
 import { onAuthStateChanged } from "firebase/auth";
 import AddRestaurantModal from "../modals/add-restaurant-modal";
+import { ref, set, getDatabase, get } from "firebase/database";
 
-function NavBar() {
-	const [isUserLogged, setUserLogged] = useState(false);
+function NavBar({ isUserLogged, setUserLogged, userRole, setUserRole }) {
 	const [isRestaurantModalOpen, setRestaurantModalOpen] = useState(false);
+
+	const getUserRole = async (user) => {
+		const database = getDatabase();
+		const userRef = ref(database, `users/${user.uid}`);
+		const userSnapshot = await get(userRef);
+
+		if (!userSnapshot.exists()) {
+			set(userRef, {
+				username: user.displayName,
+				email: user.email,
+				role: "user",
+			});
+			setUserRole("User");
+		} else {
+			const role = userSnapshot.val().role;
+			setUserRole(role.charAt(0).toUpperCase() + role.slice(1));
+		}
+	};
 
 	const signInWithGoogle = async () => {
 		try {
-			await signInWithPopup(auth, googleProvider);
+			const result = await signInWithPopup(auth, googleProvider);
+			if (result && result.user) {
+				const user = result.user;
+				getUserRole(user);
+				setUserLogged(true);
+			} else {
+				console.error("No user information found.");
+			}
 		} catch (err) {
 			console.error(err);
 		}
 	};
+
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
 			if (user) {
+				getUserRole(user);
 				setUserLogged(true);
 			} else {
 				setUserLogged(false);
@@ -31,10 +58,12 @@ function NavBar() {
 		try {
 			await signOut(auth);
 			setUserLogged(false);
+			setUserRole("");
 		} catch (err) {
 			console.error(err);
 		}
 	};
+
 	const onModalCloseClick = () => {
 		setRestaurantModalOpen(false);
 	};
@@ -43,6 +72,7 @@ function NavBar() {
 		console.log("CLICK");
 		setRestaurantModalOpen(true);
 	};
+
 	return (
 		<div className="navbar">
 			{isRestaurantModalOpen ? (
@@ -56,7 +86,7 @@ function NavBar() {
 				</a>
 			</div>
 			<div className="nav-item">
-				<h3 className="title-nav">Neo Food Picker</h3>
+				<h3 className="title-nav"> {userRole}</h3>
 			</div>
 			<div className="nav-item button-holder">
 				{isUserLogged ? (
@@ -64,12 +94,14 @@ function NavBar() {
 						<button className="btn logout-btn" onClick={onLogOut}>
 							Logout
 						</button>
-						<button
-							className="btn restaurant-btn"
-							onClick={onAddRestaurantClick}
-						>
-							Add Restaurant
-						</button>
+						{userRole === "Admin" && (
+							<button
+								className="btn restaurant-btn"
+								onClick={onAddRestaurantClick}
+							>
+								Add Restaurant
+							</button>
+						)}
 					</>
 				) : (
 					<button className="btn login-btn" onClick={signInWithGoogle}>

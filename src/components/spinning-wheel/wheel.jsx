@@ -3,7 +3,7 @@ import { Wheel } from "react-custom-roulette";
 import "./style.scss";
 import data from "./restaurants";
 
-const WheelComponent = () => {
+const WheelComponent = ({ isUserLogged }) => {
 	const [mustSpin, setMustSpin] = useState(false);
 	const [prizeNumber, setPrizeNumber] = useState(0);
 	const [winner, setWinner] = useState(0);
@@ -41,7 +41,11 @@ const WheelComponent = () => {
 						setWinnerShown(true);
 					}}
 				/>
-				<button className="spinButton" onClick={handleSpinClick}>
+				<button
+					disabled={isUserLogged ? false : true}
+					className="spinButton"
+					onClick={handleSpinClick}
+				>
 					Shou Badna Nekoul
 				</button>
 			</div>
