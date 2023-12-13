@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./navbar.scss";
 import { auth, googleProvider } from "../../config/firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
@@ -10,25 +10,28 @@ import { ref, set, getDatabase, get } from "firebase/database";
 function NavBar({ isUserLogged, setUserLogged, userRole, setUserRole }) {
 	const [isRestaurantModalOpen, setRestaurantModalOpen] = useState(false);
 
-	const getUserRole = async (user) => {
-		const database = getDatabase();
-		const userRef = ref(database, `users/${user.uid}`);
-		const userSnapshot = await get(userRef);
+	const getUserRole = useCallback(
+		async (user) => {
+			const database = getDatabase();
+			const userRef = ref(database, `users/${user.uid}`);
+			const userSnapshot = await get(userRef);
 
-		if (!userSnapshot.exists()) {
-			set(userRef, {
-				username: user.displayName,
-				email: user.email,
-				role: "user",
-			});
-			setUserRole("User");
-		} else {
-			const role = userSnapshot.val().role;
-			setUserRole(role.charAt(0).toUpperCase() + role.slice(1));
-		}
-	};
+			if (!userSnapshot.exists()) {
+				set(userRef, {
+					username: user.displayName,
+					email: user.email,
+					role: "user",
+				});
+				setUserRole("User");
+			} else {
+				const role = userSnapshot.val().role;
+				setUserRole(role.charAt(0).toUpperCase() + role.slice(1));
+			}
+		},
+		[setUserRole]
+	);
 
-	const signInWithGoogle = async () => {
+	const signInWithGoogle = useCallback(async () => {
 		try {
 			const result = await signInWithPopup(auth, googleProvider);
 			if (result && result.user) {
@@ -41,33 +44,24 @@ function NavBar({ isUserLogged, setUserLogged, userRole, setUserRole }) {
 		} catch (err) {
 			console.error(err);
 		}
-	};
-useEffect(() => {
-	const handleAuthStateChanged = (user) => {
-		if (user) {
-			getUserRole(user);
-			setUserLogged(true);
-		} else {
-			setUserLogged(false);
-		}
-	};
+	}, [getUserRole, setUserLogged]);
 
-	onAuthStateChanged(auth, handleAuthStateChanged);
-
-	// Include dependencies in the dependency array
-}, [getUserRole, setUserLogged]);
 	useEffect(() => {
-		onAuthStateChanged(auth, (user) => {
+		const handleAuthStateChanged = (user) => {
 			if (user) {
 				getUserRole(user);
 				setUserLogged(true);
 			} else {
 				setUserLogged(false);
 			}
-		});
-	}, [isUserLogged]);
+		};
 
-	const onLogOut = async () => {
+		onAuthStateChanged(auth, handleAuthStateChanged);
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [getUserRole, setUserLogged]);
+
+	const onLogOut = useCallback(async () => {
 		try {
 			await signOut(auth);
 			setUserLogged(false);
@@ -75,16 +69,16 @@ useEffect(() => {
 		} catch (err) {
 			console.error(err);
 		}
-	};
+	}, [setUserLogged, setUserRole]);
 
-	const onModalCloseClick = () => {
+	const onModalCloseClick = useCallback(() => {
 		setRestaurantModalOpen(false);
-	};
+	}, []);
 
-	const onAddRestaurantClick = () => {
+	const onAddRestaurantClick = useCallback(() => {
 		console.log("CLICK");
 		setRestaurantModalOpen(true);
-	};
+	}, []);
 
 	return (
 		<div className="navbar">
