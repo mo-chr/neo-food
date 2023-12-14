@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./style.scss";
-import { database } from "../../../config/firebase";
 import { ref, getDatabase, get, push, set } from "firebase/database";
 
 function AddRestaurantModal({ onCloseClick, onSubmit }) {
