@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { Wheel } from "react-custom-roulette";
 import "./style.scss";
 import data from "./restaurants";
-import confetti from "https://cdn.skypack.dev/canvas-confetti";
+import confetti from "canvas-confetti";
+
 
 const WheelComponent = ({ isUserLogged }) => {
 	const [mustSpin, setMustSpin] = useState(false);
