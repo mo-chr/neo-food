@@ -14,8 +14,8 @@
 	filter: drop-shadow(0px 5px 4px #4444dd);
 }
 .spinButton:disabled {
-  background-color: #bdc3c7; /* Change to your preferred color for disabled state */
-  color: #7f8c8d; /* Change to your preferred color for text in disabled state */
+  background-color: #bdc3c7;
+  color: #7f8c8d;
   cursor: not-allowed;
 }
 .box {
@@ -33,4 +33,15 @@
 	color: white;
     font-weight: 700;
     font-size: 40px;
+	position: absolute;
+	z-index: 20;
+	top: 50;
+	background-color: rgba(0, 0, 0, 0.733);
+	border-radius: 5px;
+	min-width: 30vw;
+	max-width: fit-content;
+	height: 30vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }

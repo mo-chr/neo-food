@@ -57,8 +57,6 @@ function NavBar({ isUserLogged, setUserLogged, userRole, setUserRole }) {
 		};
 
 		onAuthStateChanged(auth, handleAuthStateChanged);
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [getUserRole, setUserLogged]);
 
 	const onLogOut = useCallback(async () => {
