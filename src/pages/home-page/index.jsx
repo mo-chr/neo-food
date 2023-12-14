@@ -6,6 +6,7 @@ import WheelComponent from "../../components/spinning-wheel/wheel";
 const HomePage = () => {
 	const [isUserLogged, setUserLogged] = useState(false);
 	const [userRole, setUserRole] = useState("");
+	const [triggerReload, setTriggerReload] = useState(false);
 
 	return (
 		<div className="home-page">
@@ -14,8 +15,14 @@ const HomePage = () => {
 				setUserLogged={setUserLogged}
 				userRole={userRole}
 				setUserRole={setUserRole}
+				triggerReload={triggerReload}
+				setTriggerReload={setTriggerReload}
 			/>
-			<WheelComponent isUserLogged={isUserLogged} />
+			<WheelComponent
+				isUserLogged={isUserLogged}
+				triggerReload={triggerReload}
+				setTriggerReload={setTriggerReload}
+			/>
 		</div>
 	);
 };

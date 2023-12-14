@@ -2,20 +2,17 @@ import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { ref, getDatabase, get, push, set } from "firebase/database";
 
-function AddRestaurantModal({ onCloseClick, onSubmit }) {
-	// State to store the list of restaurants
+function AddRestaurantModal({
+	onCloseClick,
+	onSubmit,
+	setTriggerReload,
+	triggerReload,
+}) {
 	const [restaurants, setRestaurants] = useState([]);
-
-	// State to track whether data is being loaded
 	const [loading, setLoading] = useState(true);
-
-	// State for the new restaurant name
 	const [newRestaurantName, setNewRestaurantName] = useState("");
-
-	// State for the selected restaurant in the dropdown
 	const [selectedRestaurant, setSelectedRestaurant] = useState("");
 
-	// useEffect to fetch restaurants from Firebase when the component mounts
 	useEffect(() => {
 		const fetchRestaurants = async () => {
 			try {
@@ -60,9 +57,10 @@ function AddRestaurantModal({ onCloseClick, onSubmit }) {
 				name: newRestaurantName,
 			});
 
-			// Update the state with the new restaurant name
 			setNewRestaurantName("");
 			setRestaurants([...restaurants, { name: newRestaurantName }]);
+			setTriggerReload(true);
+			onCloseClick();
 		} catch (error) {
 			console.error("Error adding restaurant to Firebase:", error);
 		}

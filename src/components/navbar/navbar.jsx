@@ -7,7 +7,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import AddRestaurantModal from "../modals/add-restaurant-modal";
 import { ref, set, getDatabase, get } from "firebase/database";
 
-function NavBar({ isUserLogged, setUserLogged, userRole, setUserRole }) {
+function NavBar({
+	isUserLogged,
+	setUserLogged,
+	userRole,
+	setUserRole,
+	triggerReload,
+	setTriggerReload,
+}) {
 	const [isRestaurantModalOpen, setRestaurantModalOpen] = useState(false);
 
 	const getUserRole = useCallback(
@@ -81,7 +88,11 @@ function NavBar({ isUserLogged, setUserLogged, userRole, setUserRole }) {
 	return (
 		<div className="navbar">
 			{isRestaurantModalOpen ? (
-				<AddRestaurantModal onCloseClick={onModalCloseClick} />
+				<AddRestaurantModal
+					onCloseClick={onModalCloseClick}
+					triggerReload={triggerReload}
+					setTriggerReload={setTriggerReload}
+				/>
 			) : (
 				""
 			)}
