@@ -21,14 +21,12 @@
   cursor: not-allowed;
 }
 .box {
-	padding: 5rem;
+	padding: 5%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	max-height: 100%;
 	gap: 20px;
-	overflow-y: hidden;
 }
 
 .winner {
