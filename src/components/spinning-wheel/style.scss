@@ -27,6 +27,7 @@
 	align-items: center;
 	justify-content: center;
 	gap: 20px;
+	height: 100%;
 }
 
 .winner {
@@ -35,14 +36,22 @@
     font-size: 40px;
 	position: absolute;
 	z-index: 20;
-	top: 30%;
 	background-color: rgba(0, 0, 0, 0.733);
 	border-radius: 5px;
-	min-width: 30vw;
-	max-width: fit-content;
+	max-width: 70%;
 	height: 30vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	padding: 20px 20px;
+}
+.winner-box{
+	top: 0;
+	right: 0;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

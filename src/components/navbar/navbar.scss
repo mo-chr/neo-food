@@ -16,6 +16,12 @@
 
 }
 
+.nav-item{
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+}
+
 .button-holder {
     display: flex;
     flex-direction: row;
@@ -25,8 +31,7 @@
 .title-nav {
     color: #6853de;
     font-weight: 600;
-    font-size: larger;
-
+    font-size: 16px;
 }
 
 .nav-item {
@@ -86,12 +91,11 @@
     }
 
     .title-nav {
-        font-size: 16px;
-        scale: 0.8;
+        font-size: 14px;
     }
 
     .Logo {
-        height: 5vh;
+        height: 4vh;
         transform: translateX(0rem);
 
     }

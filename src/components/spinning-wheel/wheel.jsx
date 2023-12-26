@@ -56,9 +56,11 @@ const WheelComponent = ({ isUserLogged, setTriggerReload, triggerReload }) => {
 	return (
 		<div className="box">
 			{isWinnerShown && (
-				<div className="winner">{`The winner is ${
-					processedData[winner]?.option || ""
-				} !!`}</div>
+				<div className="winner-box">
+					<div className="winner">{`The winner is ${
+						processedData[winner]?.option || ""
+					} !!`}</div>
+				</div>
 			)}
 			{!isWinnerShown && (
 				<Wheel

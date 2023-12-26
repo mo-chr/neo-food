@@ -9,7 +9,7 @@ const HomePage = () => {
 	const [triggerReload, setTriggerReload] = useState(false);
 
 	return (
-		<div className="home-page">
+		<>
 			<NavBar
 				isUserLogged={isUserLogged}
 				setUserLogged={setUserLogged}
@@ -18,12 +18,14 @@ const HomePage = () => {
 				triggerReload={triggerReload}
 				setTriggerReload={setTriggerReload}
 			/>
-			<WheelComponent
-				isUserLogged={isUserLogged}
-				triggerReload={triggerReload}
-				setTriggerReload={setTriggerReload}
-			/>
-		</div>
+			<div className="home-page">
+				<WheelComponent
+					isUserLogged={isUserLogged}
+					triggerReload={triggerReload}
+					setTriggerReload={setTriggerReload}
+				/>
+			</div>
+		</>
 	);
 };
 

@@ -1,3 +1,6 @@
+:root{
+  height: 100vh;
+}
 body {
 	background-image: linear-gradient(
 		to right top,
@@ -14,7 +17,6 @@ body {
 		sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-
 	overflow-x: hidden;
 	position: relative;
 }
