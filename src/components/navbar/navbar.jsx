@@ -16,26 +16,34 @@ function NavBar({
 	setTriggerReload,
 }) {
 	const [isRestaurantModalOpen, setRestaurantModalOpen] = useState(false);
+	const [userMail, setUserMail] = useState("");
 
 	const getUserRole = useCallback(
 		async (user) => {
 			const database = getDatabase();
 			const userRef = ref(database, `users/${user.uid}`);
-			const userSnapshot = await get(userRef);
 
-			if (!userSnapshot.exists()) {
-				set(userRef, {
-					username: user.displayName,
-					email: user.email,
-					role: "user",
-				});
-				setUserRole("User");
-			} else {
-				const role = userSnapshot.val().role;
-				setUserRole(role.charAt(0).toUpperCase() + role.slice(1));
+			try {
+				const userSnapshot = await get(userRef);
+
+				if (!userSnapshot.exists()) {
+					await set(userRef, {
+						username: user.displayName,
+						email: user.email,
+						role: "user",
+					});
+					setUserRole("User");
+				} else {
+					const role = userSnapshot.val().role;
+					setUserRole(role.charAt(0).toUpperCase() + role.slice(1));
+					const mail = userSnapshot.val().email;
+					setUserMail(mail);
+				}
+			} catch (error) {
+				console.error("Error getting user data:", error);
 			}
 		},
-		[setUserRole]
+		[setUserRole, setUserMail]
 	);
 
 	const signInWithGoogle = useCallback(async () => {
@@ -71,6 +79,7 @@ function NavBar({
 			await signOut(auth);
 			setUserLogged(false);
 			setUserRole("");
+			setUserMail("");
 		} catch (err) {
 			console.error(err);
 		}
@@ -102,7 +111,7 @@ function NavBar({
 				</a>
 			</div>
 			<div className="nav-item">
-				<h3 className="title-nav"> {userRole}</h3>
+				<h3 className="title-nav">{userMail}</h3>
 			</div>
 			<div className="nav-item button-holder">
 				{isUserLogged ? (
