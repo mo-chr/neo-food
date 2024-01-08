@@ -1,6 +1,17 @@
 :root{
   height: 100vh;
 }
+ul, ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    margin: 0;
+    padding: 0;
+	    list-style: none;
+}
 body {
 	background-image: linear-gradient(
 		to right top,

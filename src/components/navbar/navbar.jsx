@@ -6,6 +6,8 @@ import NeoLogo from "../../assets/neo-logo-white.svg";
 import { onAuthStateChanged } from "firebase/auth";
 import AddRestaurantModal from "../modals/add-restaurant-modal";
 import { ref, set, getDatabase, get } from "firebase/database";
+import ProfileIcon from "../../assets/profile.png";
+import HoverMenu from "../hover-menu";
 
 function NavBar({
 	isUserLogged,
@@ -16,6 +18,7 @@ function NavBar({
 	setTriggerReload,
 }) {
 	const [isRestaurantModalOpen, setRestaurantModalOpen] = useState(false);
+	const [isProfileSubmenuOpen, setProfileSubmenuOpen] = useState(false);
 	const [userMail, setUserMail] = useState("");
 
 	const getUserRole = useCallback(
@@ -74,6 +77,13 @@ function NavBar({
 		onAuthStateChanged(auth, handleAuthStateChanged);
 	}, [getUserRole, setUserLogged]);
 
+	const displaySubMenu = useCallback(() => {
+		setProfileSubmenuOpen(true);
+	}, []);
+	const closeSubMenu = useCallback(() => {
+		setProfileSubmenuOpen(false);
+	}, []);
+
 	const onLogOut = useCallback(async () => {
 		try {
 			await signOut(auth);
@@ -89,8 +99,7 @@ function NavBar({
 		setRestaurantModalOpen(false);
 	}, []);
 
-	const onAddRestaurantClick = useCallback(() => {
-		console.log("CLICK");
+	const onRestaurantModalOpen = useCallback(() => {
 		setRestaurantModalOpen(true);
 	}, []);
 
@@ -115,24 +124,24 @@ function NavBar({
 			</div>
 			<div className="nav-item button-holder">
 				{isUserLogged ? (
-					<>
-						<button className="btn logout-btn" onClick={onLogOut}>
-							Logout
-						</button>
-						{userRole === "Admin" && (
-							<button
-								className="btn restaurant-btn"
-								onClick={onAddRestaurantClick}
-							>
-								Add Restaurant
-							</button>
-						)}
-					</>
-				) : (
+					<a href="#" className="profile-wrapper" onClick={displaySubMenu}>
+						<img className="profile-button" src={ProfileIcon} alt="" />
+						{isProfileSubmenuOpen ? (
+							<HoverMenu
+								onLogOut={onLogOut}
+								onRestaurantModalOpen={onRestaurantModalOpen}
+								closeSubMenu={closeSubMenu}
+								userRole={userRole}
+							/>
+						) : null}
+					</a>
+				) : null}
+
+				{!isUserLogged ? (
 					<button className="btn login-btn" onClick={signInWithGoogle}>
 						Login
 					</button>
-				)}
+				) : null}
 			</div>
 		</div>
 	);

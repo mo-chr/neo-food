@@ -1,0 +1,31 @@
+
+.hover-menu{
+background-color: #f7f7f7;
+display: flex;
+flex-direction: column;
+gap:20px;
+position: absolute;
+right: 0;
+white-space: nowrap;
+font-size: 18px;
+transition: all 300ms ease-in-out;
+}
+
+.hover-menu li:nth-child(1){
+padding-top: 15px;
+}
+.hover-menu li:nth-last-child(1){
+padding-bottom: 15px;
+}
+
+.hover-menu li{
+padding: 10px 20px;
+transition: all 200ms ease-in-out;
+}
+.hover-menu ul {
+    flex-direction: column;
+}
+.hover-menu li:hover{
+    background-color: #3a3a3a4d;
+    
+}
