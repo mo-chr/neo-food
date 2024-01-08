@@ -8,6 +8,7 @@ import AddRestaurantModal from "../modals/add-restaurant-modal";
 import { ref, set, getDatabase, get } from "firebase/database";
 import ProfileIcon from "../../assets/profile.png";
 import HoverMenu from "../hover-menu";
+import DebtModal from "../modals/add-debt-modal";
 
 function NavBar({
 	isUserLogged,
@@ -19,6 +20,7 @@ function NavBar({
 }) {
 	const [isRestaurantModalOpen, setRestaurantModalOpen] = useState(false);
 	const [isProfileSubmenuOpen, setProfileSubmenuOpen] = useState(false);
+	const [isDebtModalOpen, setDebtModalOpen] = useState(true);
 	const [userMail, setUserMail] = useState("");
 
 	const getUserRole = useCallback(
@@ -31,6 +33,7 @@ function NavBar({
 
 				if (!userSnapshot.exists()) {
 					await set(userRef, {
+						uid: user.uid,
 						username: user.displayName,
 						email: user.email,
 						role: "user",
@@ -99,6 +102,16 @@ function NavBar({
 		setRestaurantModalOpen(false);
 	}, []);
 
+	const onDebtModalClose = useCallback(() => {
+		setDebtModalOpen(false);
+	}, []);
+
+	const onDebtModalOpen = useCallback(() => {
+		setDebtModalOpen(true);
+		closeSubMenu();
+		// eslint-disable-next-line
+	}, []);
+
 	const onRestaurantModalOpen = useCallback(() => {
 		setRestaurantModalOpen(true);
 	}, []);
@@ -114,6 +127,7 @@ function NavBar({
 			) : (
 				""
 			)}
+			{isDebtModalOpen ? <DebtModal onDebtModalClose={onDebtModalClose} /> : ""}
 			<div className="nav-item">
 				<a href="https://neo.ae/">
 					<img className="Logo" src={NeoLogo} alt="Neo Mena's Logo" />
@@ -132,6 +146,7 @@ function NavBar({
 								onRestaurantModalOpen={onRestaurantModalOpen}
 								closeSubMenu={closeSubMenu}
 								userRole={userRole}
+								onDebtModalOpen={onDebtModalOpen}
 							/>
 						) : null}
 					</div>

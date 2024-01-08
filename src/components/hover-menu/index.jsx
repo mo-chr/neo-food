@@ -4,6 +4,7 @@ import OutsideAlerter from "../../utils";
 function HoverMenu({
 	onLogOut,
 	onRestaurantModalOpen,
+	onDebtModalOpen,
 	displaySubMenu,
 	closeSubMenu,
 	userRole,
@@ -19,7 +20,7 @@ function HoverMenu({
 						<li onClick={onRestaurantModalOpen}>Add Restaurant</li>
 					)}
 
-					<li>Add Debt (Coming Soon)</li>
+					<li onClick={onDebtModalOpen}>Add Debt (Coming Soon)</li>
 					<li onClick={onLogOut}> Logout</li>
 				</ul>
 			</div>
