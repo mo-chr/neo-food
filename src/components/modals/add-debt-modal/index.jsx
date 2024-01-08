@@ -92,9 +92,7 @@ const DebtModal = ({ onDebtModalClose }) => {
 							{users
 								.filter((user) => user.uid !== selectedCreditorUUID)
 								.map((user) => (
-									<option
-										value={user.uid}
-									>{`${user.username} (${user.email})`}</option>
+									<option value={user.uid}>{`${user.username}`}</option>
 								))}
 						</select>
 					</div>
@@ -112,9 +110,7 @@ const DebtModal = ({ onDebtModalClose }) => {
 							{users
 								.filter((user) => user.uid !== selectedDebtorUUID)
 								.map((user) => (
-									<option value={user.uid}>
-										{`${user.username} (${user.email})`}
-									</option>
+									<option value={user.uid}>{`${user.username}`}</option>
 								))}
 						</select>
 					</div>
