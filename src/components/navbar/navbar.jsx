@@ -20,7 +20,7 @@ function NavBar({
 }) {
 	const [isRestaurantModalOpen, setRestaurantModalOpen] = useState(false);
 	const [isProfileSubmenuOpen, setProfileSubmenuOpen] = useState(false);
-	const [isDebtModalOpen, setDebtModalOpen] = useState(true);
+	const [isDebtModalOpen, setDebtModalOpen] = useState(false);
 	const [userMail, setUserMail] = useState("");
 
 	const getUserRole = useCallback(
@@ -108,8 +108,6 @@ function NavBar({
 
 	const onDebtModalOpen = useCallback(() => {
 		setDebtModalOpen(true);
-		closeSubMenu();
-		// eslint-disable-next-line
 	}, []);
 
 	const onRestaurantModalOpen = useCallback(() => {
