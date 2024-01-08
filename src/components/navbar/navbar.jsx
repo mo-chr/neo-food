@@ -124,7 +124,7 @@ function NavBar({
 			</div>
 			<div className="nav-item button-holder">
 				{isUserLogged ? (
-					<a href="#" className="profile-wrapper" onClick={displaySubMenu}>
+					<div className="profile-wrapper" onClick={displaySubMenu}>
 						<img className="profile-button" src={ProfileIcon} alt="" />
 						{isProfileSubmenuOpen ? (
 							<HoverMenu
@@ -134,7 +134,7 @@ function NavBar({
 								userRole={userRole}
 							/>
 						) : null}
-					</a>
+					</div>
 				) : null}
 
 				{!isUserLogged ? (
