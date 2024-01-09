@@ -23,6 +23,7 @@ function NavBar({
 	const [isDebtModalOpen, setDebtModalOpen] = useState(false);
 	const [userMail, setUserMail] = useState("");
 
+
 	const getUserRole = useCallback(
 		async (user) => {
 			const database = getDatabase();
@@ -43,6 +44,7 @@ function NavBar({
 					const role = userSnapshot.val().role;
 					setUserRole(role.charAt(0).toUpperCase() + role.slice(1));
 					const mail = userSnapshot.val().email;
+					const uid = userSnapshot.val().uid;
 					setUserMail(mail);
 				}
 			} catch (error) {

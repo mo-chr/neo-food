@@ -1,0 +1,14 @@
+.table-component{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10%;
+    flex-direction: column;
+}
+.custom-table, th , td{
+    border: solid 2px;
+    border-collapse: collapse;
+}
+.custom-table td{
+    width: 150px;
+}

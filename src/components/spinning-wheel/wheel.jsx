@@ -62,33 +62,33 @@ const WheelComponent = ({ isUserLogged, setTriggerReload, triggerReload }) => {
 					} !!`}</div>
 				</div>
 			)}
-			{!isWinnerShown && (
-				<Wheel
-					mustStartSpinning={mustSpin}
-					prizeNumber={prizeNumber}
-					backgroundColors={[
-						"#8A2BE2", // Blue Violet
-						"#6A5ACD", // Slate Blue
-						"#483D8B", // Dark Slate Blue
-						"#4169E1", // Royal Blue
-						"#6495ED", // Cornflower Blue
-						"#1E90FF", // Dodger Blue
-						"#00BFFF", // Deep Sky Blue
-						"#87CEEB", // Sky Blue
-					]}
-					textColors={["#ffffff"]}
-					outerBorderColor={["#4B0082"]}
-					innerBorderColor={["#4B0082"]}
-					radiusLineColor={["#4B0082"]}
-					data={processedData.length > 1 ? processedData : data}
-					fontSize={16}
-					onStopSpinning={() => {
-						setMustSpin(false);
-						showWinnerFor10Seconds();
-						confetti();
-					}}
-				/>
-			)}
+
+			<Wheel
+				mustStartSpinning={mustSpin}
+				prizeNumber={prizeNumber}
+				backgroundColors={[
+					"#8A2BE2", // Blue Violet
+					"#6A5ACD", // Slate Blue
+					"#483D8B", // Dark Slate Blue
+					"#4169E1", // Royal Blue
+					"#6495ED", // Cornflower Blue
+					"#1E90FF", // Dodger Blue
+					"#00BFFF", // Deep Sky Blue
+					"#87CEEB", // Sky Blue
+				]}
+				textColors={["#ffffff"]}
+				outerBorderColor={["#4B0082"]}
+				innerBorderColor={["#4B0082"]}
+				radiusLineColor={["#4B0082"]}
+				data={processedData.length > 1 ? processedData : data}
+				fontSize={16}
+				onStopSpinning={() => {
+					setMustSpin(false);
+					showWinnerFor10Seconds();
+					confetti();
+				}}
+			/>
+
 			{!isWinnerShown && (
 				<button
 					disabled={!isUserLogged}

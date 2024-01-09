@@ -4,7 +4,6 @@ import "firebase/auth";
 import "./style.scss";
 
 const DebtModal = ({ onDebtModalClose }) => {
-	const [setLoading] = useState(true);
 	const [users, setUsers] = useState([]);
 	const [selectedDebtorUUID, setSelectedDebtorUUID] = useState("");
 	const [selectedCreditorUUID, setSelectedCreditorUUID] = useState("");
@@ -23,11 +22,8 @@ const DebtModal = ({ onDebtModalClose }) => {
 				const userArray = Object.values(userData);
 				setUsers(userArray);
 			}
-
-			setLoading(false);
 		} catch (error) {
 			console.error("Error fetching users from Firebase:", error);
-			setLoading(false);
 		}
 	};
 	// eslint-disable-next-line react-hooks/exhaustive-deps
@@ -79,7 +75,7 @@ const DebtModal = ({ onDebtModalClose }) => {
 				</button>
 				<div className="modal-content">
 					<div className="modal-row">
-						<label>Debtor (who is in debt)</label>
+						<label>Borrower</label>
 						<select
 							id="select-debtor"
 							className="custom-select"
@@ -87,7 +83,7 @@ const DebtModal = ({ onDebtModalClose }) => {
 							onChange={handleDebtorChange}
 						>
 							<option value="" disabled>
-								Select a Debtor
+								Select a Borrower
 							</option>
 							{users
 								.filter((user) => user.uid !== selectedCreditorUUID)
@@ -97,7 +93,7 @@ const DebtModal = ({ onDebtModalClose }) => {
 						</select>
 					</div>
 					<div className="modal-row">
-						<label>Creditor</label>
+						<label>Lender</label>
 						<select
 							id="select-creditor"
 							className="custom-select"
@@ -105,7 +101,7 @@ const DebtModal = ({ onDebtModalClose }) => {
 							onChange={handleCreditorChange}
 						>
 							<option value="" disabled>
-								Select a Creditor
+								Select a Lender
 							</option>
 							{users
 								.filter((user) => user.uid !== selectedDebtorUUID)
