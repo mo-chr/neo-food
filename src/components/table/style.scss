@@ -10,5 +10,17 @@
     border-collapse: collapse;
 }
 .custom-table td{
-    width: 150px;
+    width: 130px;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+.custom-table, th , td{
+   font-size: 14px;
+}
+.custom-table td{
+    width: 20px;
+    padding: 5px;
+}
+
 }

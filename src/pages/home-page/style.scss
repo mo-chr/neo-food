@@ -6,7 +6,28 @@ height: 100%;
     display: flex;
     flex-direction: row;
     width: 100%;
+    	background-image: linear-gradient(
+		to right top,
+		#f90ef9,
+		#8487ff,
+		#00b3ff,
+		#00cbff,
+		#12d9eb
+	);
+	background-repeat: no-repeat;
+	padding-bottom: 20%;
 }
 .table-container{
     width: 35%;
+}
+
+@media only screen and (max-width: 600px) {
+  .page-container{
+    flex-direction: column;
+}
+.table-container{
+    width: 100%;
+	
+}
+
 }
