@@ -86,11 +86,13 @@ const HomePage = () => {
 
 	useEffect(() => {
 		fetchDebtorTableData();
-	}, [userUid, fetchDebtorTableData]);
+		// eslint-disable-next-line
+	}, [userUid]);
 
 	useEffect(() => {
 		fetchCreditorTableData();
-	}, [userUid, fetchCreditorTableData]);
+		// eslint-disable-next-line
+	}, [userUid]);
 
 	useEffect(() => {
 		const handleAuthStateChanged = (user) => {
