@@ -28,6 +28,7 @@ const HomePage = () => {
 			console.error("Error getting user data:", error);
 		}
 	}, []);
+
 	const fetchDebtorTableData = async () => {
 		try {
 			const databaseRef = ref(getDatabase(), "debts");
@@ -85,13 +86,11 @@ const HomePage = () => {
 
 	useEffect(() => {
 		fetchDebtorTableData();
-		console.log(creditorTableData);
-	}, [userUid]);
+	}, [userUid, fetchDebtorTableData]);
 
 	useEffect(() => {
 		fetchCreditorTableData();
-		console.log(borrowerTableData);
-	}, [userUid]);
+	}, [userUid, fetchCreditorTableData]);
 
 	useEffect(() => {
 		const handleAuthStateChanged = (user) => {

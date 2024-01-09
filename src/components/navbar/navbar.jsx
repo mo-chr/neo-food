@@ -44,7 +44,6 @@ function NavBar({
 					const role = userSnapshot.val().role;
 					setUserRole(role.charAt(0).toUpperCase() + role.slice(1));
 					const mail = userSnapshot.val().email;
-					const uid = userSnapshot.val().uid;
 					setUserMail(mail);
 				}
 			} catch (error) {
